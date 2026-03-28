@@ -17,15 +17,17 @@ QString fileProcessor::generatePath(const QString& fileName) const {
     QString fileBaseName = fileInfo.completeBaseName();
 
     QString currFilePath = QDir(targetDirectory).filePath(fileName);
+    QString tmpFilePath = currFilePath + ".tmp";
 
-    if (SaveMode == saveMode::overwrite) return currFilePath; 
-    if (!QFile::exists(currFilePath)) return currFilePath;
+    if (SaveMode == saveMode::overwrite) return currFilePath;
+    if (!QFile::exists(currFilePath) && !QFile::exists(tmpFilePath)) return currFilePath;
 
     fileNum.store(0);
     while (fileNum < 50000) {
         QString newFileName = QString("%1_%2.%3").arg(fileBaseName).arg(++fileNum).arg(fileSuffix);
         QString newPath = QDir(targetDirectory).filePath(newFileName);
-        if (!QFile::exists(newPath)) return newPath;
+        tmpFilePath = newPath + ".tmp";
+        if (!QFile::exists(newPath) && !QFile::exists(tmpFilePath)) return newPath;
     }
 
     QString currDate = QDateTime::currentDateTime().toString("dd-MM-yyyy_hh-mm-ss");
