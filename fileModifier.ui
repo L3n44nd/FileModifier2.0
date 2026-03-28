@@ -118,9 +118,21 @@
     <rect>
      <x>60</x>
      <y>60</y>
-     <width>191</width>
+     <width>221</width>
      <height>24</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>221</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="maxLength">
+    <number>25</number>
    </property>
    <property name="placeholderText">
     <string>*.txt, testFile.bin </string>
@@ -197,9 +209,9 @@
   <widget class="QLabel" name="maskInfoLabel">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>290</x>
      <y>60</y>
-     <width>321</width>
+     <width>291</width>
      <height>21</height>
     </rect>
    </property>
@@ -251,7 +263,7 @@
      <x>320</x>
      <y>270</y>
      <width>239</width>
-     <height>23</height>
+     <height>31</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
