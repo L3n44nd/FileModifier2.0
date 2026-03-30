@@ -5,8 +5,10 @@
 
 fileProcessor::fileProcessor(QObject *parent)
     : QObject(parent) {
+    int cores = QThread::idealThreadCount();
+    int numOfThreads = std::max(1, cores / 2);
     threadPool = new QThreadPool(this);
-    threadPool->setMaxThreadCount(4);
+    threadPool->setMaxThreadCount(numOfThreads);
 }
 
 thread_local QByteArray fileProcessor::buffer;
