@@ -25,16 +25,13 @@ QString fileProcessor::generatePath(const QString& fileName) const {
     if (!QFile::exists(currFilePath) && !QFile::exists(tmpFilePath)) return currFilePath;
 
     fileNum.store(0);
-    while (fileNum < 50000) {
+    while (fileNum < UINT64_MAX) {
         QString newFileName = QString("%1_%2.%3").arg(fileBaseName).arg(++fileNum).arg(fileSuffix);
         QString newPath = QDir(targetDirectory).filePath(newFileName);
         tmpFilePath = newPath + ".tmp";
         if (!QFile::exists(newPath) && !QFile::exists(tmpFilePath)) return newPath;
     }
-
-    QString currDate = QDateTime::currentDateTime().toString("dd-MM-yyyy_hh-mm-ss");
-    QString datePath = QDir(targetDirectory).filePath(QString("%1_%2.%3").arg(fileBaseName).arg(currDate).arg(fileSuffix));
-    return datePath;//если за адекватное колво попыток не нашелся свободный номер, сохранить с текущей датой
+    return "";
 }
 
 void fileProcessor::processFiles(const QStringList& files){
