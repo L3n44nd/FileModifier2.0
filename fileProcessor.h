@@ -63,7 +63,7 @@ private:
     std::atomic<bool> workingNow = false;
     std::atomic<bool> fileErr = false;
     std::atomic<bool> reported = false;
-    mutable std::atomic<int> fileNum;
+    mutable std::atomic<uint64_t> fileNum;
 
     QString generatePath(const QString& fileName) const;
     void processFiles(const QStringList& files);
