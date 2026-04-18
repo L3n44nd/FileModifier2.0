@@ -63,6 +63,8 @@ void fileProcessor::processFiles(const QStringList& files){
 }
 
 bool fileProcessor::processOneFile(const QString& filePath){
+    if (fileErr.load() || stopReq.load()) return false;
+    
     QFile fileFrom(filePath);
     QFileInfo fileInfo(filePath);
     QString fileName = fileInfo.fileName();
